@@ -1,12 +1,14 @@
 React = require 'react'
-Trio = require './trio'
+{Link} = require 'react-router'
 _ = require 'lodash'
 
+Trio = require './trio'
+
 module.exports = React.createClass
+  contextTypes: {
+    router: React.PropTypes.func.isRequired
+  }
   getInitialState: ->
-    underIndex: 6
-    overIndex: 5
-    activeMode: 'blend'
     nextOver: 7
     nextUnder: 8
 
@@ -24,13 +26,14 @@ module.exports = React.createClass
   nextBlend: ->
     {overIndex, underIndex} = @getRandom()
     {nextOver, nextUnder} = @state
-
     @setState
       nextOver: overIndex
       nextUnder: underIndex
-      activeMode: 'blend'
-      underIndex: nextUnder
+    nextRoute =
+      mode: 'blend'
       overIndex: nextOver
+      underIndex: nextUnder
+    @context.router.transitionTo 'home', nextRoute
 
   componentDidMount: ->
     {overIndex, underIndex} = @getRandom()
@@ -40,18 +43,24 @@ module.exports = React.createClass
 
   render: ->
     {files} = @props
-    {underIndex, overIndex, activeMode, nextOver, nextUnder} = @state
+    {overIndex, activeMode, nextOver, nextUnder} = @state
+    currentParams = @context.router.getCurrentParams()
+    replace = @context.router.replaceWith
 
-    setModeUnder = => @setState activeMode: 'under'
-    setModeOver = => @setState activeMode: 'over'
-    setModeBlend = => @setState activeMode: 'blend'
+    underIndex = parseInt currentParams.underIndex
+    overIndex = parseInt currentParams.overIndex
+    activeMode = currentParams.mode
+
+    setMode = (mode) ->
+      return =>
+        replace 'home', _.merge currentParams, {mode:mode}
 
     <main className="eight columns offset-by-two">
       <p><em>Snelb</em> takes two people at random from <a href="http://www.micagradshow.com">www.micagradshow.com</a> and overlays three of their images on top of one another. The idea is based on <a href="http://www.alexjacque.com/">Alex Jacque</a>’s thesis project, <a href="http://www.micagradshow.com/students/ajacque/">blens</a>.</p>
       <p className="users">
-        <button className={if activeMode is 'under' then 'active'} onClick={setModeUnder}>{files[underIndex].uid}</button>
-        <button className={if activeMode is 'blend' then 'active'} onClick={setModeBlend}>BLEND</button>
-        <button className={if activeMode is 'over' then 'active'} onClick={setModeOver}>{files[overIndex].uid}</button>
+        <button className={if activeMode is 'under' then 'active'} onClick={setMode('under')}>{files[underIndex].uid}</button>
+        <button className={if activeMode is 'blend' then 'active'} onClick={setMode('blend')}>BLEND</button>
+        <button className={if activeMode is 'over' then 'active'} onClick={setMode('over')}>{files[overIndex].uid}</button>
       </p>
       <Trio under={files[underIndex]} over={files[overIndex]} mode={activeMode} />
       <Trio under={files[nextUnder]} over={files[nextOver]} mode='hide' />
