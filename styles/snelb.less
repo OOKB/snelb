@@ -66,23 +66,43 @@ main button {
   }
 }
 
-main ul {
+main .trio {
+  position: relative;
+  width: 100%;
+  min-height: 300px;
+}
+
+main .trio ul {
   list-style: none;
   margin: 1em 0;
   padding: 0;
+  opacity: 0;
+  transition: all 500ms;
+
+  &.active {
+    opacity: 1;
+  }
 }
 
 @media (min-width: 50rem) {
-  main ul::after {
-    content: "";
-    display: table;
-    clear: both;
+  main .trio ul {
+    position:absolute;
+    top:0;
+    right:0;
+    left:0;
+
+    &::after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+
+    li {
+      width: 33%;
+      float: left;
+    }
   }
 
-  main ul li {
-    width: 33%;
-    float: left;
-  }
 }
 
 main a {
