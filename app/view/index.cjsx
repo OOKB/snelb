@@ -7,7 +7,7 @@ module.exports = React.createClass
     router: React.PropTypes.func.isRequired
   }
   render: ->
-    {sha, description, author, title} = @props
+    {sha, description, author, title, files} = @props
     appFileName = sha or 'app'
     cssFilePath = "/assets/#{appFileName}.css"
     jsFilePath = "/assets/#{appFileName}.js"
@@ -22,6 +22,9 @@ module.exports = React.createClass
     else
       metaDescription = false
 
+    {underIndex, overIndex} = @context.router.getCurrentParams()
+    if underIndex or overIndex
+      title += " | #{files[underIndex].uid} & #{files[overIndex].uid}"
     <html>
       <head>
         <title>{title or 'title'}</title>
