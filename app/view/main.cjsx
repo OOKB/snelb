@@ -6,6 +6,6 @@ module.exports = React.createClass
     {files} = @props
 
     <main className="eight columns offset-by-two">
-      <p><em>Snelb</em> takes two people at random from <a href="http://www.micagradshow.com">www.micagradshow.com</a> and overlays their first three images on top of one another. The idea is based on Alex Jacque’s thesis project, blens.</p>
+      <p><em>Snelb</em> takes two people at random from <a href="http://www.micagradshow.com">www.micagradshow.com</a> and overlays three of their images on top of one another. The idea is based on Alex Jacque’s thesis project, blens.</p>
       <Trio files={files[0].files} uid={files[0].uid} />
     </main>
