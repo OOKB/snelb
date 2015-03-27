@@ -55,7 +55,7 @@ module.exports = React.createClass
       return =>
         replace 'home', _.merge currentParams, {mode:mode}
 
-    <main className="eight columns offset-by-two">
+    <main>
       <p><em>Snelb</em> takes two people at random from <a href="http://www.micagradshow.com">www.micagradshow.com</a> and overlays three of their images on top of one another. The idea is based on <a href="http://www.alexjacque.com/">Alex Jacque</a>’s thesis project, <a href="http://www.micagradshow.com/students/ajacque/">blens</a>.</p>
       <p className="users">
         <button className={if activeMode is 'under' then 'active'} onClick={setMode('under')}>{files[underIndex].uid}</button>

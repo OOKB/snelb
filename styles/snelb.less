@@ -86,7 +86,6 @@ main p.users button {
 main .trio {
   position: relative;
   width: 100%;
-  min-height: 300px;
 }
 
 main .trio ul {
@@ -96,10 +95,12 @@ main .trio ul {
   display: none;
   opacity: 0;
   transition: all 500ms;
+  z-index: 1;
 
   &.active {
     display:block;
     opacity: 1;
+    z-index: 10;
   }
 }
 
@@ -108,10 +109,17 @@ main .trio.hide {
 }
 
 @media (min-width: 50rem) {
+  main p {
+    max-width: 750px;
+  }
   main p.users button {
     font-size: .8em;
     margin: 0 .4em;
     padding: .4em 1em;
+  }
+
+  main .trio {
+    padding-bottom: 40%;
   }
 
   main .trio ul {
@@ -139,6 +147,18 @@ main a {
 }
 
 footer {
+  margin-top: 5rem;
   clear: both;
   color: white;
+}
+
+footer a {
+  color: white;
+  transition: all 400ms;
+
+  &:hover {
+    background: white;
+    color: @snelb-blue;
+    text-decoration: none;
+  }
 }
