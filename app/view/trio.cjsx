@@ -13,7 +13,7 @@ module.exports = React.createClass
       underUsrUrl = createUsrUrl(underUrl)
       "#{underUsrUrl}&blend=/#{overUrl}&bm=screen&bs=inherit"
 
-    <div>
+    <div className="trio">
       <ul className="active">
         <li><img src={ createBlendUrl(u1, o1) } /></li>
         <li><img src={ createBlendUrl(u2, o2) } /></li>
