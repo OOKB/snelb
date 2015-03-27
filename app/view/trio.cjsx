@@ -2,7 +2,7 @@ React = require 'react'
 
 module.exports = React.createClass
   render: ->
-    {under, over} = @props
+    {under, over, mode} = @props
     {files: [u1, u2, u3]} = under
     {files: [o1, o2, o3]} = over
 
@@ -14,17 +14,17 @@ module.exports = React.createClass
       "#{underUsrUrl}&blend=/#{overUrl}&bm=screen&bs=inherit"
 
     <div className="trio">
-      <ul className="active">
+      <ul className={if mode is 'blend' then 'active'}>
         <li><img src={ createBlendUrl(u1, o1) } /></li>
         <li><img src={ createBlendUrl(u2, o2) } /></li>
         <li><img src={ createBlendUrl(u3, o3) } /></li>
       </ul>
-      <ul>
+      <ul className={if mode is 'under' then 'active'}>
         <li><img src={ createUsrUrl(u1) } /></li>
         <li><img src={ createUsrUrl(u2) } /></li>
         <li><img src={ createUsrUrl(u3) } /></li>
       </ul>
-      <ul>
+      <ul className={if mode is 'over' then 'active'}>
         <li><img src={ createUsrUrl(o1) } /></li>
         <li><img src={ createUsrUrl(o2) } /></li>
         <li><img src={ createUsrUrl(o3) } /></li>
