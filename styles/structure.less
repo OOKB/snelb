@@ -1,0 +1,242 @@
+/* Grid
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+* {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  position: relative;
+  /* type stuff */
+  /**/
+  -moz-font-feature-settings: "kern";
+  -webkit-font-feature-settings: "kern";
+  -ms-font-feature-settings: "kern";
+  -o-font-feature-settings: "kern";
+  font-feature-settings: "kern";
+  font-kerning: normal;
+  text-rendering: optimizeLegibility;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+/* super simple CF from the very end of here: http://css-tricks.com/snippets/css/clear-fix/ — only works in IE8+, so not so super back compatible — but we're looking to the future! */
+.clearfix::after,
+.group::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.text-center,
+.center-text      { text-align: center; }
+.text-left,
+.left-align-text  { text-align: left;   }
+.text-right,
+.right-align-text { text-align: right;  }
+
+/* columnar stuff */
+.container {
+  margin: 0 auto;
+  padding: 0 1rem 2rem 1rem;
+  width: 100%;
+}
+
+.column,
+.columns {
+  margin: 0 0 2rem 0;
+  padding: 0;
+}
+
+.group {
+  margin: 0 0 2rem 0;
+}
+
+.one,
+.two,
+.three,
+.four,
+.five,
+.six,
+.halfwidth,
+.seven,
+.eight,
+.nine,
+.ten,
+.eleven,
+.twelve,
+.fullwidth    { width: calc(100% / 12 * 12); }
+
+.visible-lg {
+  display: none;
+  visibility: hidden;
+}
+
+@media (min-width: 30rem) {
+  .container {
+    margin: 0 auto;
+    padding-bottom: 2rem;
+    min-width: 30rem;
+    width: 80%;
+  }
+}
+
+@media (min-width: 50rem) {
+  .left        {float:left;}
+  .right       {float:right;}
+  .clear,
+  .clearBoth   {display:block;clear:both;}
+  .clearLeft   {display:block;clear:left;}
+  .clearRight  {display:block;clear:right;}
+
+  .container {
+    margin: 0 auto;
+    padding-bottom: 2rem;
+    max-width: 75rem;
+  }
+
+  /* columnar stuff */
+  .column,
+  .columns {
+    float: left;
+    margin: 0 0 2rem 0;
+    padding: 0 1rem;
+  }
+
+  .group {
+    margin: 0 -1rem 2rem -1rem;
+  }
+
+  /* default 12 column grid */
+  .one                   { width: calc(100% / 12 * 01); }
+  .two                   { width: calc(100% / 12 * 02); }
+  .three                 { width: calc(100% / 12 * 03); }
+  .four                  { width: calc(100% / 12 * 04); }
+  .five                  { width: calc(100% / 12 * 05); }
+  .six, .halfwidth       { width: calc(100% / 12 * 06); }
+  .seven                 { width: calc(100% / 12 * 07); }
+  .eight                 { width: calc(100% / 12 * 08); }
+  .nine                  { width: calc(100% / 12 * 09); }
+  .ten                   { width: calc(100% / 12 * 10); }
+  .eleven                { width: calc(100% / 12 * 11); }
+  .twelve, .fullwidth    { width: calc(100% / 12 * 12); }
+
+  /* some standard offsets */
+  .offset-by-one            { margin-left: calc(100% / 12 * 01); }
+  .offset-by-two            { margin-left: calc(100% / 12 * 02); }
+  .offset-by-three          { margin-left: calc(100% / 12 * 03); }
+  .offset-by-four           { margin-left: calc(100% / 12 * 04); }
+  .offset-by-five           { margin-left: calc(100% / 12 * 05); }
+  .offset-by-six,
+  .offset-by-hal            { margin-left: calc(100% / 12 * 06); }
+  .offset-by-seven          { margin-left: calc(100% / 12 * 07); }
+  .offset-by-eight          { margin-left: calc(100% / 12 * 08); }
+  .offset-by-nine           { margin-left: calc(100% / 12 * 09); }
+  .offset-by-ten            { margin-left: calc(100% / 12 * 10); }
+  .offset-by-eleven         { margin-left: calc(100% / 12 * 11); }
+  .offset-by-twelve         { margin-left: calc(100% / 12 * 12); }
+
+  .visible-lg {
+    display: block;
+    visibility: visible;
+  }
+
+}
+
+/* Base Styles
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+/* NOTE
+html is set to 100% so that all the REM measurements throughout this doc are
+are based on 16px sizing. So basically 1rem = 16px :) — should a better solution be devised? */
+html {
+  font-size: 100%;
+}
+body {
+  font-size: 1em; /* currently ems cause chrome bug misinterpreting rems on body element */
+  line-height: 1.5;
+  font-weight: 400;
+  /* do I want a better, wider ranging font-stack? */
+  font-family: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #231f20;
+  -webkit-hyphens: auto;
+  -moz-hyphens: auto;
+  hyphens: auto;
+  text-rendering: optimizeLegibility;
+}
+
+/* Base Typography
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+h1, h2, h3, h4, h5, h6 {
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  font-weight: bold;
+  line-height: normal;
+}
+h1 { font-size: 3.0rem;  }
+h2 { font-size: 2.5rem;  }
+h3 { font-size: 2.0rem;  }
+h4 { font-size: 1.75rem; }
+h5 { font-size: 1.5rem;  }
+h6 { font-size: 1.33rem; }
+
+/* Larger than phablet */
+/* these aren't currently being changed... though perhaps they need to be */
+@media (min-width: 30rem) {
+  h1 { font-size: 3.0rem; }
+  h2 { font-size: 2.5rem; }
+  h3 { font-size: 2.0rem; }
+  h4 { font-size: 1.75rem; }
+  h5 { font-size: 1.5rem; }
+  h6 { font-size: 1.33rem; }
+}
+
+p {
+  margin-top: 0;
+  margin-bottom: 1em;
+  line-height: normal;
+}
+
+.lead {
+  font-size: 1.25rem;
+  font-weight: 300;
+  line-height: normal;
+}
+
+ul {
+  margin-bottom: 1em;
+  line-height: normal;
+}
+
+small,
+.small {
+  font-size: .9rem;
+}
+
+img { max-width: 100%; };
+
+/* Centering in the unknown */
+/* from http://css-tricks.com/centering-in-the-unknown/
+  ---------------------------------------------------------*/
+/* This parent can be any width and height */
+.block {
+  text-align: center;
+}
+
+/* The ghost, nudged to maintain perfect centering */
+.block:before {
+  content: '';
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+  margin-right: -0.25em; /* Adjusts for spacing */
+}
+
+/* The element to be centered, can
+   also be of any width and height */
+.centered {
+  display: inline-block;
+  vertical-align: middle;
+  width: 300px;
+}
