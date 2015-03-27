@@ -1,11 +1,29 @@
 React = require 'react'
 Trio = require './trio'
+_ = require 'lodash'
 
 module.exports = React.createClass
+  getInitialState: ->
+    underIndex: 6
+    overIndex: 5
+
+  nextBlend: ->
+    {files} = @props
+    rand = ->
+      _.random 0, files.length-1
+    ui = rand()
+    oi = rand()
+    if oi is ui then oi = rand()
+    @setState
+      underIndex: ui
+      overIndex: oi
+
   render: ->
     {files} = @props
+    {underIndex, overIndex} = @state
 
     <main className="eight columns offset-by-two">
       <p><em>Snelb</em> takes two people at random from <a href="http://www.micagradshow.com">www.micagradshow.com</a> and overlays three of their images on top of one another. The idea is based on Alex Jacque’s thesis project, blens.</p>
-      <Trio under={files[0]} over={files[1]} />
+      <button onClick={@nextBlend}>Next!</button>
+      <Trio under={files[underIndex]} over={files[overIndex]} />
     </main>
