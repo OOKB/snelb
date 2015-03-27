@@ -5,12 +5,12 @@ module.exports = React.createClass
   render: ->
     {data, query} = @props
 
-    <div className="container">
+    <div className="container center-text">
       <header>
-        <h1 className="center-text">snelb</h1>
+        <h1>snelb</h1>
       </header>
       <Main />
       <footer>
-        <p>Kai and Kristian poking some fun at Alex Jacque...</p>
+        <p>Kai and Kristian poking some fun at Alex</p>
       </footer>
     </div>
