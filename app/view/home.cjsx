@@ -11,7 +11,7 @@ module.exports = React.createClass
       </header>
       <Main files={files} />
       <footer>
-        <p>Kai and Kristian poking some fun at Alex</p>
+        <p>Kai and Kristian having some fun with blending.</p>
         <small>Built by <a href="http://www.ookb.co/">OOKB</a>, Powered by <a href="http://www.cape.io/">CAPE</a></small>
       </footer>
     </div>
